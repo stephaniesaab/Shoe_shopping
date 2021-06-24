@@ -1,0 +1,27 @@
+---
+title: "Source B"
+description: |
+ Detailed notes for Source B
+ 
+date: "`r Sys.Date()`"
+output: distill::distill_article
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+The datasets for the plots were sourced from kaggle.com at the following links:
+
+ - Data for women's shoes: https://www.kaggle.com/datafiniti/womens-shoes-prices
+ - Data for men's shoes: https://www.kaggle.com/sureshmecad/mens-shoe-prices
+ 
+
+Distill is a publication format for scientific and technical writing, native to the web. 
+
+Learn more about using Distill for R Markdown at <https://rstudio.github.io/distill>.
+
+
+
+
+
