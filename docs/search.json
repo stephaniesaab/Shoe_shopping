@@ -6,14 +6,15 @@
       "description": "Some additional details about the website",
       "author": [],
       "contents": "\r\nAbout Me\r\nHello! My name is Stephanie Saab and I’m an incoming first-year student at the University of Toronto. I love to play basketball and the piano.\r\nAbout the Project\r\nThis is my final project for Kane’s Data science bootcamp: These boots were made for shopping. This site features a few plots comparing shoe shopping tendencies and prices for men and women.\r\nGoals\r\nExplore the variation in prices of women’s and men’s shoes\r\nThese were collected from two datasets on kaggle.com\r\n\r\nExplore the different spending habits of women and men in regards to shoes\r\nThis sample only includes 10000 shoe purchases in the U.S.\r\n“This is data science”\r\n~Preceptor\r\n“Kane’s Free High School Data Science Bootcamp”\r\n\r\n",
-      "last_modified": "2021-06-24T17:06:01-04:00"
+      "last_modified": "2021-06-24T19:12:26-04:00"
     },
     {
       "path": "index.html",
       "title": "Shoe shopping",
+      "description": "\"These boots are made for shopping\"\n",
       "author": [],
       "contents": "\r\n\r\n\r\n\r\n\r\n\r\n\r\n",
-      "last_modified": "2021-06-24T17:06:14-04:00"
+      "last_modified": "2021-06-24T19:12:44-04:00"
     },
     {
       "path": "Source_A.html",
@@ -26,8 +27,8 @@
         }
       ],
       "date": "`r Sys.Date()`",
-      "contents": "\r\nSource A was Primer.data. It was flawless (Kane 2020)\r\nDistill is a publication format for scientific and technical writing, native to the web.\r\nLearn more about using Distill for R Markdown at https://rstudio.github.io/distill. (jones2018distill?)\r\n\r\n\r\n\r\nKane, David. 2020. Primer.data.\r\n\r\n\r\n\r\n\r\n",
-      "last_modified": "2021-06-24T17:06:17-04:00"
+      "contents": "\r\nSource A was Primer.data. It was flawless (Kane 2020)\r\nDistill is a publication format for scientific and technical writing, native to the web.\r\nLearn more about using Distill for R Markdown at https://rstudio.github.io/distill.\r\n\r\n\r\n\r\nKane, David. 2020. Primer.data.\r\n\r\n\r\n\r\n\r\n",
+      "last_modified": "2021-06-24T19:12:46-04:00"
     },
     {
       "path": "Source_B.html",
@@ -36,7 +37,7 @@
       "author": [],
       "date": "`r Sys.Date()`",
       "contents": "\r\nThe datasets for the plots were sourced from kaggle.com at the following links:\r\nData for women’s shoes: https://www.kaggle.com/datafiniti/womens-shoes-prices\r\nData for men’s shoes: https://www.kaggle.com/sureshmecad/mens-shoe-prices\r\nDistill is a publication format for scientific and technical writing, native to the web.\r\nLearn more about using Distill for R Markdown at https://rstudio.github.io/distill.\r\n\r\n\r\n\r\n",
-      "last_modified": "2021-06-24T17:06:18-04:00"
+      "last_modified": "2021-06-24T19:12:47-04:00"
     }
   ],
   "collections": []
