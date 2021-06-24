@@ -1,0 +1,64 @@
+---
+title: "Shoe shopping"
+description: |
+
+site: distill::distill_website
+---
+
+```{r setup, echo=F,include=F}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+library(ggthemes)
+library(httr)
+library(distill)
+library(lubridate)
+library(dbplyr)
+library(gganimate)
+library(ggplot2)
+
+#x<-read_csv("archive.zip") #male shoes
+#y<-read_csv("7210_1.csv.zip") #female shoes
+x <-read_csv("Copyarchive.zip")%>% 
+  distinct(id, .keep_all= TRUE) %>% 
+  select(dateadded,prices_amountmin,prices_amountmax,prices_currency,prices_issale) %>% 
+  mutate(gender="Men") %>% 
+  mutate(dateadded=as.Date(dateadded)) %>% 
+  mutate(
+         prices_amountmin=as.numeric(prices_amountmin),
+         prices_amountmax=as.numeric(prices_amountmax)) %>%
+  mutate(prices_issale=as.logical(prices_issale)) %>% 
+  drop_na()
+
+y <- read_csv("Copy7210_1.csv.zip")%>% 
+  distinct(id, .keep_all= TRUE) %>% 
+  select(dateAdded,prices.amountMin,prices.amountMax,prices.currency,prices.isSale) %>% 
+  mutate(gender="Women") %>% 
+  rename(prices_amountmin="prices.amountMin",prices_amountmax="prices.amountMax",prices_currency="prices.currency",prices_issale="prices.isSale") %>% 
+  drop_na() %>% 
+  mutate(dateadded=as.Date(dateAdded)) %>% 
+  select(-dateAdded) %>% 
+  drop_na()
+
+shoes2<-full_join(x,y,by=c("dateadded", "prices_amountmin", "prices_amountmax", "prices_currency", "prices_issale", "gender"),copy=FALSE)
+
+shoes3<-shoes2 %>% 
+  mutate(price_avg=rowMeans(shoes2[c(2,3)],na.rm=T)) %>% 
+  mutate(price_avg=round(price_avg,2)) %>%
+  #select(-prices_amountmax,-prices_amountmin) %>% 
+  filter(prices_currency=="USD") %>% 
+  arrange(price_avg) %>% 
+  filter(price_avg<=1000,price_avg>=10.00) %>% 
+  select(-prices_currency)
+shoes3$yearadded <- format(as.Date(shoes3$dateadded, format="%d/%m/%Y"),"%Y")
+shoes3
+```
+
+
+```{r graph, echo=F,include=T}
+shoes3 %>%
+  ggplot(mapping=aes(x=price_avg,fill=prices_issale))+
+  geom_histogram(bins=30,position="dodge")+
+  facet_wrap(~gender)+
+  
+  labs(title="The shoe shopping tendencies of 10,000 men and 10,000 women from 2014 to 2017",subtitle="Women pay more for their shoes while men look for sales more")
+```
