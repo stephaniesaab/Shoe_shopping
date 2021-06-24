@@ -1,6 +1,7 @@
 ---
 title: "Shoe shopping"
 description: |
+ "These boots are made for shopping"
 
 site: distill::distill_website
 ---
@@ -15,6 +16,9 @@ library(lubridate)
 library(dbplyr)
 library(gganimate)
 library(ggplot2)
+library(ggiraph)
+library(plotly)
+
 
 #x<-read_csv("archive.zip") #male shoes
 #y<-read_csv("7210_1.csv.zip") #female shoes
@@ -50,15 +54,30 @@ shoes3<-shoes2 %>%
   filter(price_avg<=1000,price_avg>=10.00) %>% 
   select(-prices_currency)
 shoes3$yearadded <- format(as.Date(shoes3$dateadded, format="%d/%m/%Y"),"%Y")
-shoes3
 ```
 
 
 ```{r graph, echo=F,include=T}
+
 shoes3 %>%
   ggplot(mapping=aes(x=price_avg,fill=prices_issale))+
   geom_histogram(bins=30,position="dodge")+
   facet_wrap(~gender)+
+  theme_wsj()+
+  labs(title="The shoe shopping tendencies of 10,000 \n men and 10,000 women from 2014 to 2017",subtitle="Women pay more for their shoes while men look for sales more",caption="Sources: Kaggle", x="Price (USD)",y="Count",fill="On sale?")+
+  theme(axis.text.x = element_text(angle = 60, hjust = 1))+
+  theme(plot.title = element_text(size = 17))+
+  theme(plot.subtitle = element_text(size = 13))+
+  theme(legend.text = element_text(size = 10))+
+  theme(legend.title = element_text(size = 12))+
+  scale_fill_manual(values=c("darkgoldenrod1","#1b98e0"),label=(c("NO","YES")))
+ # scale_y_discrete(values=c(100:2000))
+
+scale_fill_manual_interactive(
+   values = c(Men = "#0072B2", Women = "#009E73"),
+    data_id = c(men = "Men", Women= "Women"),
+   tooltip = c(Men = "Male", Women = "Female"))
   
-  labs(title="The shoe shopping tendencies of 10,000 men and 10,000 women from 2014 to 2017",subtitle="Women pay more for their shoes while men look for sales more")
+  #'scale_fill_manual_interactive(
+  #  name = label_interactive("gender", tooltip="Gender levels", data_id="legend.title")
 ```
