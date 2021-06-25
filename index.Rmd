@@ -60,7 +60,7 @@ shoes3$yearadded <- format(as.Date(shoes3$dateadded, format="%d/%m/%Y"),"%Y")
 
 ```{r graph, echo=F,include=T}
 
-shoes3 %>%
+shoes4<-shoes3 %>%
   ggplot(mapping=aes(x=price_avg,fill=prices_issale,text = paste(
                "Price:", price_avg, "\n",
                           "Count",y)))+
@@ -78,5 +78,5 @@ shoes3 %>%
   scale_fill_manual(values=c("darkgoldenrod1","#1b98e0"),label=(c("NO","YES")))+
   scale_y_continuous(breaks=c(200,400,600,800,1000,1200,1400,1600,1800,2000))
  
-#ggplotly(shoes4,tooltip="text")
+ggplotly(shoes4,tooltip="text")
 ```
